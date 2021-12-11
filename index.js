@@ -1,5 +1,6 @@
 const inquirer = require ('inquirer')
 const fs = require('fs');
+const { removeListener } = require('process');
 //const generatePage = require ('./dist/page-template')
 //const pageHTML = generatePage ()
 
@@ -8,28 +9,51 @@ const fs = require('fs');
 //});  
 
 
-inquirer
-    .prompt([
+const inputQuestions= [
         {
             type:'input',
-            name:'employee name',
+            name:'employeeName',
             message:'Employee Name?',
+            validate: employeeName => {
+               if(employeeName){
+                    return true;
+            }else{
+                console.log ('Please Enter Employee Name.');
+                    return false;
+                }
+            }
         }, 
         {
             type:'input',
-            name:'employee id',
+            name:'employeeId',
             message:'Employee Number?',
+            validate: employeeId => {
+                if (employeeId) {
+                    return true ;
+                }else{
+                    console.log('Please enter Employee Id.');
+                        return false;
+                }
+            }
         },
         {
             type:'input',
             name:'email',
             message:'Employee Email?',
+            validate: email => {
+                if (email) {
+                    return true;
+                }else{
+                    console.log('Please enter Employee Email.');
+                        return false;
+                }
+            }
         },
         {
             type:'list',
-            name: 'Job Title',
+            name: 'jobTitle',
             message: 'What is the employee job title?',
-            choices: ['Manager','Engineer','Intern']
+            choices: ['Manager','Engineer','Intern'],
         },
        
         {
@@ -38,6 +62,15 @@ inquirer
             message:'GitHub UserName?'
 
         }
-    ])
+    ]
+
+function init () {
+    inquirer.prompt (inputQuestions)
+        .then (answers => {
+            console.log(answers)
+        });
+        
+        }
 
 
+init ();
