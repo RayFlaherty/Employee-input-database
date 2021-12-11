@@ -1,7 +1,7 @@
 const inquirer = require ('inquirer')
 const fs = require('fs');
-const { removeListener } = require('process');
-const generatePage = require ('./dist/page-template')
+//const { removeListener } = require('process');
+//const generatePage = require ('./dist/page-template')
 //const pageHTML = generatePage ()
 
 //fs.writeFile('index.html', pageHTML, err => {
@@ -63,21 +63,14 @@ const inputQuestions= [
 
         }
     ]
-function writeToFile (fileName, date){
-    return fs.writeFile(fileName, date, err => {
-        if (err) {
-            throw Error (err)
-        }
-    })
-}
 
 function init () {
     inquirer.prompt (inputQuestions)
         .then (answers => {
-            const generatePageTemplate = generatePage (answers)
-                writeToFile('page-template.js',generatePageTemplate)
-        })           
-}   
+            console.log(answers)
+        });
+        
+        }
 
 
 init ();
