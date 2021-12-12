@@ -1,23 +1,27 @@
 const   Employee = require ('../lib/Employee')
 
 test ('Creates an employee object', () => {
-    const newEmployee = new Employee ('Manager','Engineer','Intern')
-        expect(typeof(newEmployee)).toBe('object')
+    const newEmployee = new Employee ('name','manager',1,'email@domain.com')
+    expect(typeof(newEmployee)).toBe('object')
 })
 
-test ('Creates a Manger object', () => {
-    const newEmployee= new Employee ('Manager','Engineer','Intern')
-        expect(newEmployee.getManager()).toBe('Manager')
+test ('Can get Name', () => {
+    const newEmployee= new Employee ('name','manager',1,'email@domain.com')
+    expect(newEmployee.getName()).toBe('name')
+})
+test ('Creates a job', () => {
+    const newEmployee = new Employee ('name','manager',1,'email@domain.com')
+        expect(newEmployee.getJob()).toBe('manager')
+})
+       
+test ('Can get Id', () => {
+    const newEmployee= new Employee ('name','manager',1,'email@domain.com')
+    expect(newEmployee.getId()).toBe(1)
 })
 
-test ('Creates a Engineer object', () => {
-    const newEmployee = new Employee ('Manager','Engineer','Intern')
-        expect(newEmployee.getEngineer()).toBe('Engineer')
-})
-
-test ('Creates an Intern object', () => {
-    const newEmployee = new Employee ('Manager','Engineer','Intern')
-        expect(newEmployee.getIntern()).toBe('Intern')
+test ('Creates an Email', () => {
+    const newEmployee = new Employee ('name','manager',1,'email@domain.com')
+    expect(newEmployee.getEmail()).toBe('email@domain.com')
 })
 
 // test ('Creates a Job Title Object', () => {
