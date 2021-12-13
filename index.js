@@ -1,5 +1,6 @@
-const inquirer = require ('inquirer')
+
 const fs = require('fs');
+const { getUserInput } = require('./src/utils')
 //const { removeListener } = require('process');
 //const generatePage = require ('./dist/page-template')
 //const pageHTML = generatePage ()
@@ -64,13 +65,8 @@ const fs = require('fs');
 //         }
 //     ]
 
-function init () {
-    inquirer.prompt (inputQuestions)
-        .then (answers => {
-            console.log(answers)
-        });
-        
-        }
+const init = () => {
+    getUserInput()
+}
 
-
-init ();
+init ()

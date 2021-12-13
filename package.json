@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/RayFlaherty/Employee-input-database#readme",
   "dependencies": {
+    "i": "^0.3.7",
     "inquirer": "^8.2.0"
   },
   "devDependencies": {
