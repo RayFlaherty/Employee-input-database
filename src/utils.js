@@ -19,9 +19,140 @@ const addManager = () =>{
 					return 'Please enter a Name'
 				}
 				return true
-			}
+            }
+		},
+        {
+            type:"input",
+            name:"id",
+            message:"What is the Employee's ID number?",
+            validate: answer => {
+				if(answer === "") {
+					return 'Please enter an ID number.'
+				}
+				return true
+            }
+        },
+        {
+            type :"input",
+            name:"email",
+            message:"What is the Employee's email account?",
+            validate: answer => {
+				if(answer === "") {
+					return 'Please enter an Email Address.'
+				}
+				return true
+            }
+        },
+        {  
+            type : "input",
+            name: "office",
+            message: "What is the manager's office number?",
+            validate: answer => {
+				if(answer === "") {
+					return 'Please enter an office number.'
+				}
+				return true
+            }
         }
-    ])
+    ])          
+}
+
+const addEngineer = () =>{
+    inquirer.prompt([
+        {
+            type:"input",
+            name:"name",
+            message:"What is the Engineer's name?",
+            validate: answer => {
+				if(answer === "") {
+					return 'Please enter a Name'
+				}
+				return true
+            }
+		},
+        {
+            type:"input",
+            name:"id",
+            message:"What is the Employee's ID number?",
+            validate: answer => {
+				if(answer === "") {
+					return 'Please enter an ID number.'
+				}
+				return true
+            }
+        },
+        {
+            type :"input",
+            name:"email",
+            message:"What is the Employee's email account?",
+            validate: answer => {
+				if(answer === "") {
+					return 'Please enter an Email Address.'
+				}
+				return true
+            }
+        },
+        {  
+            type : "input",
+            name: "github",
+            message: "What is the Engineer's GitHub username?",
+            validate: answer => {
+				if(answer === "") {
+					return 'Please enter a username.'
+				}
+				return true
+            }
+        }
+    ])          
+}
+
+const addIntern = () =>{
+    inquirer.prompt([
+        {
+            type:"input",
+            name:"name",
+            message:"What is the Intern's name?",
+            validate: answer => {
+				if(answer === "") {
+					return 'Please enter a Name'
+				}
+				return true
+            }
+		},
+        {
+            type:"input",
+            name:"id",
+            message:"What is the Employee's ID number?",
+            validate: answer => {
+				if(answer === "") {
+					return 'Please enter an ID number.'
+				}
+				return true
+            }
+        },
+        {
+            type :"input",
+            name:"email",
+            message:"What is the Employee's email account?",
+            validate: answer => {
+				if(answer === "") {
+					return 'Please enter an Email Address.'
+				}
+				return true
+            }
+        },
+        {  
+            type : "input",
+            name: "school",
+            message: "What school did the Intern Attend?",
+            validate: answer => {
+				if(answer === "") {
+					return 'Please enter a School.'
+				}
+				return true
+            }
+        }
+    ])          
 }
 
 const addEmployee = () => { 
@@ -40,11 +171,11 @@ const addEmployee = () => {
                      return "Manager"
 
                 case "Engineer":
-                    addManager()
+                    addEngineer()
                     return "Engineer"
 
                 case "Intern":
-                    addManager()
+                    addIntern()
                     return "Engineer"
 
                 case "Done":
