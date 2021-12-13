@@ -1,12 +1,15 @@
 const inquirer = require ('inquirer');
-const index = require('../index');
-const Employee = require('../lib/Employee');
+//const index = require('../index');
+//const Employee = require('../lib/Employee');
 const Manager = require('../lib/Manager');
 const Engineer = require ('../lib/Engineer');
 const Intern = require('../lib/Intern');
 const employeeDataBase = require ('./employeeDataBase')
 const fs = require('fs')
 const path = require ('path')
+
+let employeeData = []
+
 
 const addManager = () =>{
     inquirer.prompt([
@@ -26,7 +29,7 @@ const addManager = () =>{
             name:"id",
             message:"What is the Employee's ID number?",
             validate: answer => {
-				if(answer === "") {
+				if(!answer.match(/^\d+$/)) {
 					return 'Please enter an ID number.'
 				}
 				return true
@@ -48,13 +51,20 @@ const addManager = () =>{
             name: "office",
             message: "What is the manager's office number?",
             validate: answer => {
-				if(answer === "") {
+				if(!answer.match(/^\d+$/)) {
 					return 'Please enter an office number.'
 				}
 				return true
             }
-        }
-    ])          
+        },   
+    ]).then(answers => {
+        
+        const {name,id,email,office} = answers
+        let newManager= new Manager (name,id,email,office)
+        employeeData.push(newManager)
+        console.log(answers)
+        addEmployee()
+    })      
 }
 
 const addEngineer = () =>{
@@ -75,7 +85,7 @@ const addEngineer = () =>{
             name:"id",
             message:"What is the Employee's ID number?",
             validate: answer => {
-				if(answer === "") {
+				if(!answer.match(/^\d+$/)) {
 					return 'Please enter an ID number.'
 				}
 				return true
@@ -94,7 +104,7 @@ const addEngineer = () =>{
         },
         {  
             type : "input",
-            name: "github",
+            name: "username",
             message: "What is the Engineer's GitHub username?",
             validate: answer => {
 				if(answer === "") {
@@ -103,7 +113,14 @@ const addEngineer = () =>{
 				return true
             }
         }
-    ])          
+    ]).then(answers => {
+        
+        const {name,id,email,github} = answers
+        let newEngineer= new Engineer (name,id,email,github)
+        employeeData.push(newEngineer)
+        console.log(answers)
+        addEmployee()
+    })          
 }
 
 const addIntern = () =>{
@@ -124,7 +141,7 @@ const addIntern = () =>{
             name:"id",
             message:"What is the Employee's ID number?",
             validate: answer => {
-				if(answer === "") {
+				if(!answer.match(/^\d+$/)) {
 					return 'Please enter an ID number.'
 				}
 				return true
@@ -152,7 +169,21 @@ const addIntern = () =>{
 				return true
             }
         }
-    ])          
+    ]).then(answers => {
+        
+        const {name,id,email,school} = answers
+        let newIntern= new Intern (name,id,email,school)
+        employeeData.push(newIntern)
+        console.log(answers)
+        addEmployee()
+    })          
+}
+
+const generateDataBase= () => {
+    console.log('Gathering Employee Input')
+    fs.writeFileSync(`${path.join(process.cwd())}/dist/employeeData.html`,employeeDataBase(employeeData), err =>{
+        if (err) console.log(err)
+    })
 }
 
 const addEmployee = () => { 
@@ -179,25 +210,15 @@ const addEmployee = () => {
                     return "Engineer"
 
                 case "Done":
-                    addManager()
-                    return "Done"
-
-    //             case "Engineer":
-    //                 return "Engineer"
-
-    //             case "Intern":
-    //                 return "Intern"
-
-    //             case "Done":
-
-    //                 return "Done"
+                    generateDataBase()
+                    process.exit()
              }
          })
      
 }
 
 
-const getUserInput = () => {
+const getStartMenu = () => {
     
         console.log('             ==========================')
         console.log("           Let's build an employee Database")
@@ -224,6 +245,4 @@ const getUserInput = () => {
         })
 }
 
-//const getBizInfo = ()
-
-module.exports= {addEmployee, getUserInput}
+module.exports= {addEmployee, getStartMenu}
