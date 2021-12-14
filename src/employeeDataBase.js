@@ -1,15 +1,34 @@
+const Manager = require("../lib/Manager")
+
 const employeeData = (data) => {
     let html = data.map (employee => {
-        if(employee.manager) {
+        if(employee.getJob() === "Manager") {
             return `
             <h2>Name: ${employee.name}</h2>
-                <p>Title: ${employee.job}</p>
+                <p>Title: ${employee.getJob()}</p>
 				<p>Id: ${employee.id}</p>
-				<p>Email: ${employee.Email}</p>
+				<p>Email: ${employee.email}</p>
 				<p>Office: ${employee.office}</p>
+            `
+        }else if ( employee.getJob() === "Engineer") {
+            return `
+            <h2>Name: ${employee.name}</h2>
+                <p>Title: ${employee.getJob()}</p>
+				<p>Id: ${employee.id}</p>
+				<p>Email: ${employee.email}</p>
+				<p>GitHub: https://github.com/${employee.username}</p>
+            `
+        }else if ( employee.getJob() === "Intern") {
+            return `
+            <h2>Name: ${employee.name}</h2>
+                <p>Title: ${employee.getJob()}</p>
+				<p>Id: ${employee.id}</p>
+				<p>Email: ${employee.email}</p>
+				<p>School:${employee.school}</p>
             `
         }
     })
+console.log(data)
 
     return`
     <!DOCTYPE html>

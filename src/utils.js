@@ -115,8 +115,8 @@ const addEngineer = () =>{
         }
     ]).then(answers => {
         
-        const {name,id,email,github} = answers
-        let newEngineer= new Engineer (name,id,email,github)
+        const {name,id,email,username} = answers
+        let newEngineer= new Engineer (name,id,email,username)
         employeeData.push(newEngineer)
         console.log(answers)
         addEmployee()
