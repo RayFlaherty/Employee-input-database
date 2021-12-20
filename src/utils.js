@@ -207,7 +207,7 @@ const addEmployee = () => {
 
                 case "Intern":
                     addIntern()
-                    return "Engineer"
+                    return "Intern"
 
                 case "Done":
                     generateDataBase()
